@@ -3,10 +3,7 @@ package fr.florianclaisse.TD4;
 import fr.florianclaisse.TD4.Models.Drone;
 import fr.florianclaisse.TD4.Models.Robot;
 import fr.florianclaisse.TD4.Models.Vehicule;
-import fr.florianclaisse.TD4.Views.Sprite;
-import fr.florianclaisse.TD4.Views.SpriteDrone;
-import fr.florianclaisse.TD4.Views.SpriteRobot;
-import fr.florianclaisse.TD4.Views.View;
+import fr.florianclaisse.TD4.Views.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -22,11 +19,18 @@ public class Main extends Application {
             new Drone(5, 5, 200, 1)
         };
 
-        Sprite[] sprites = new Sprite[vehicules.length];
+        SpriteVehicule[] spriteVehicules = new SpriteVehicule[vehicules.length];
         for (int i = 0; i < vehicules.length; i++) {
-            if (vehicules[i] instanceof Robot) { sprites[i] = new SpriteRobot( (Robot) vehicules[i]); }
-            else { sprites[i] = new SpriteDrone( (Drone) vehicules[i]); }
+            if (vehicules[i] instanceof Robot) { spriteVehicules[i] = new SpriteRobot( (Robot) vehicules[i]); }
+            else { spriteVehicules[i] = new SpriteDrone( (Drone) vehicules[i]); }
         }
+
+        SpriteDecor[] spriteDecors = new SpriteDecor[] {
+            new SpriteDust(new Position(5, 15)),
+            new SpriteDust(new Position(15, 2)),
+            new SpriteRock(new Position(10, 3)),
+            new SpriteRock(new Position(14, 14))
+        };
 
         // Affiche la fenetre
         View view = new View(20, 20);
@@ -39,13 +43,17 @@ public class Main extends Application {
 
             for (int i = 0; i < vehicules.length; i++) {
                 if (!vehicules[i].getPosition().equals(target) && vehicules[i].canMove(target)) {
-                    sprites[i].animateMove(target);
+                    spriteVehicules[i].animateMove(target);
                     break;
                 }
             }
         });
 
-        for (Sprite sprite: sprites) {
+        for (Sprite sprite: spriteVehicules) {
+            view.getPane().getChildren().add(sprite.getImg());
+        }
+
+        for (Sprite sprite: spriteDecors) {
             view.getPane().getChildren().add(sprite.getImg());
         }
 
