@@ -1,7 +1,7 @@
 package fr.florianclaisse.TD4.Views;
 
+import fr.florianclaisse.TD4.Models.World;
 import fr.florianclaisse.TD4.Position;
-import fr.florianclaisse.TD4.Views.ImageResource;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -24,6 +24,20 @@ public class View {
         this.height = height;
 
         this.drawLines();
+    }
+
+    public View(World world) {
+        this(world.getWidth(), world.getHeight());
+
+        for (int y = 0; y < this.width; y++) {
+            for (int x = 0; x < this.height; x++) {
+                Position position = new Position(x, y);
+
+                if (world.get(position) != World.EMPTY) {
+                    pane.getChildren().add(DecorFactory.create(position, world.get(position)).getImg());
+                }
+            }
+        }
     }
 
     private void drawLines() {
@@ -57,7 +71,5 @@ public class View {
         return new Position(x, y);
     }
 
-    public Pane getPane() {
-        return this.pane;
-    }
+    public Pane getPane() { return this.pane; }
 }

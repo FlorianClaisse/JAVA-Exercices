@@ -1,6 +1,5 @@
 package fr.florianclaisse.TD4.Models;
 
-import fr.florianclaisse.TD4.Models.Robot;
 import fr.florianclaisse.TD4.Position;
 
 public abstract class Vehicule {

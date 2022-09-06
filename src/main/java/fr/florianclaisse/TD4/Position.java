@@ -1,6 +1,7 @@
 package fr.florianclaisse.TD4;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class Position {
     private int x;
@@ -18,6 +19,14 @@ public class Position {
 
     public void translate(int delta) {
         this.translate(delta, delta);
+    }
+
+    public static Position random(int width, int height) {
+        Random random = new Random();
+        int r1 = random.nextInt(width);
+        int r2 = random.nextInt(height);
+
+        return new Position(r1, r2);
     }
 
     public int getX() { return this.x; }
