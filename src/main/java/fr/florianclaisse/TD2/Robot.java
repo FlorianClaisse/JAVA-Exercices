@@ -1,5 +1,8 @@
 package fr.florianclaisse.TD2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Robot {
 
     private Position position;
@@ -32,17 +35,30 @@ public class Robot {
     public void move(Position target) {
         this.energy -= this.distance(target) * this.cost;
         this.position = target;
+        this.move = false;
     }
 
     public Position[] getPathTo(Position target) {
-        // TODO: Trouver un code pour faire l'escalier
-        Position[] array = new Position[2];
-        array[0] = new Position(target.getX(), this.position.getY());
-        array[1] = new Position(target.getX(), target.getY());
+        this.move = true;
 
-        return array;
+        List<Position> posTab = new ArrayList<>();
+        int x1 = position.getX(), x2 = target.getX();
+        int y1 = position.getY(), y2 = target.getY();
+        int distX = x2 - x1;
+        int distY = y2 - y1;
+        while (distX != 0 && distY != 0) {
+            distX = x2 - x1;
+            distY = y2 - y1;
+            if (Math.abs(distX) > Math.abs(distY)) {
+                if (distX > 0) { posTab.add(new Position(++x1, y1)); }
+                else { posTab.add(new Position(--x1, y1)); }
+            } else {
+                if (distY > 0) { posTab.add(new Position(x1, ++y1)); }
+                else { posTab.add(new Position(x1, --y1)); }
+            }
+        }
+        return posTab.toArray(Position[]::new);
     }
 
     public Position getPosition() { return this.position; }
-    public void setMove(boolean move) { this.move = move; }
 }

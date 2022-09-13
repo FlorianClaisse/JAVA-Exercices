@@ -28,8 +28,6 @@ public class SpriteRobot {
         // Make the path movement
         Position[] positionPath = this.robot.getPathTo(target);
 
-        this.robot.setMove(true);
-
         if (positionPath != null) {
             Path path = new Path();
 
@@ -48,13 +46,11 @@ public class SpriteRobot {
 
             ptr.setOnFinished(e -> {
                 this.robot.move(target);
-                this.robot.setMove(false);
             });
         } else {
             // Direct move
             this.robot.move(target);
             this.updateLocation(target);
-            this.robot.setMove(false);
         }
     }
 
