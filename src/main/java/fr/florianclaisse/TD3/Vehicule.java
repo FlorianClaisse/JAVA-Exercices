@@ -17,13 +17,9 @@ public class Vehicule {
         this(new Position(posx, posy), energy, cost);
     }
 
-    private int range() {
-        return (int) (this.energy / this.cost);
-    }
+    private int range() { return (int) (this.energy / this.cost); }
 
-    public int distance(Position target) {
-        return 0;
-    }
+    public int distance(Position target) { return 0; }
 
     public final boolean canMove(Position target) {
         return !this.move && this.distance(target) <= this.range();
@@ -32,12 +28,11 @@ public class Vehicule {
     public final void move(Position target) {
         this.energy -= this.distance(target) * this.cost;
         this.position = target;
+        this.move = false;
         System.out.println("Move completed: " + this);
     }
 
-    public Position[] getPathTo(Position target) {
-        return null;
-    }
+    public Position[] getPathTo(Position target) { return null; }
 
     public final Position getPosition() { return this.position; }
     public final void setMove(boolean move) { this.move = move; }

@@ -28,8 +28,6 @@ public class Sprite {
         // Make the path movement
         Position[] positionPath = this.vehicule.getPathTo(target);
 
-        this.vehicule.setMove(true);
-
         if (positionPath != null) {
             Path path = new Path();
 
@@ -46,15 +44,11 @@ public class Sprite {
             ptr.setNode(this.getImg());
             ptr.play();
 
-            ptr.setOnFinished(e -> {
-                this.vehicule.move(target);
-                this.vehicule.setMove(false);
-            });
+            ptr.setOnFinished(e -> this.vehicule.move(target));
         } else {
             // Direct move
             this.vehicule.move(target);
             this.updateLocation(target);
-            this.vehicule.setMove(false);
         }
     }
 

@@ -6,9 +6,4 @@ public class SpriteRobot extends Sprite {
     public SpriteRobot(Robot robot) {
         super(robot, new ImageView(ImageResource.imageRobot));
     }
-
-    @Override
-    public String toString() {
-        return "Robot";
-    }
 }
