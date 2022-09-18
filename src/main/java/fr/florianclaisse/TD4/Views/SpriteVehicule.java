@@ -1,7 +1,7 @@
 package fr.florianclaisse.TD4.Views;
 
 import fr.florianclaisse.TD4.Models.Vehicule;
-import fr.florianclaisse.TD4.Position;
+import fr.florianclaisse.TD4.Models.Position;
 import javafx.animation.PathTransition;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.LineTo;
@@ -9,9 +9,9 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
 
-public abstract class SpriteVehicule extends Sprite {
+public class SpriteVehicule extends Sprite {
 
-    private Vehicule vehicule;
+    private final Vehicule vehicule;
 
     public SpriteVehicule(Vehicule vehicule, ImageView img) {
         super(img);
@@ -28,8 +28,6 @@ public abstract class SpriteVehicule extends Sprite {
     public final void animateMove(Position target) {
         // Make the path movement
         Position[] positionPath = this.vehicule.getPathTo(target);
-
-        this.vehicule.setMove(true);
 
         if (positionPath != null) {
             Path path = new Path();
@@ -49,13 +47,11 @@ public abstract class SpriteVehicule extends Sprite {
 
             ptr.setOnFinished(e -> {
                 this.vehicule.move(target);
-                this.vehicule.setMove(false);
             });
         } else {
             // Direct move
             this.vehicule.move(target);
             this.updateLocation(target);
-            this.vehicule.setMove(false);
         }
     }
 }

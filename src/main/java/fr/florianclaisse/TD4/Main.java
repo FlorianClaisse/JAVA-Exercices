@@ -1,9 +1,6 @@
 package fr.florianclaisse.TD4;
 
-import fr.florianclaisse.TD4.Models.Drone;
-import fr.florianclaisse.TD4.Models.Robot;
-import fr.florianclaisse.TD4.Models.Vehicule;
-import fr.florianclaisse.TD4.Models.World;
+import fr.florianclaisse.TD4.Models.*;
 import fr.florianclaisse.TD4.Views.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -20,7 +17,7 @@ public class Main extends Application {
         // Creation du robot et du drone
         //Position position = new Position(4,4);
         Vehicule[] vehicules = new Vehicule[] {
-            new Robot(4, 4, 200, 2),
+            new Robot(4, 4, 2000, 2),
             new Drone(5, 5, 200, 1)
         };
 

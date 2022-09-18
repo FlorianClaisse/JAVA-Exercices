@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 
 public class ImageResource {
     public static final int size = 40;
+
     public static final Image imageRobot = ImageResource.loadImage("robot.png");
     public static final Image imageDrone = ImageResource.loadImage("drone.png");
 

@@ -1,7 +1,5 @@
 package fr.florianclaisse.TD4.Models;
 
-import fr.florianclaisse.TD4.Position;
-
 public class Drone extends Vehicule {
 
     public Drone(Position position, double energy, double cost) {
@@ -14,16 +12,14 @@ public class Drone extends Vehicule {
 
     @Override
     public int distance(Position target) {
-        return Math.abs(target.getX() - this.getPosition().getX()) + Math.abs(target.getY() - this.getPosition().getY());
+        int x = this.getPosition().getX() - target.getX();
+        int y = this.getPosition().getY() - target.getY();
+        return (int) Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
     }
 
     @Override
     public Position[] getPathTo(Position target) {
-        // TODO: Trouver un code pour faire l'escalier
-        Position[] array = new Position[2];
-        array[0] = new Position(target.getX(), this.getPosition().getY());
-        array[1] = new Position(target.getX(), target.getY());
-
-        return array;
+        this.setMove(true);
+        return new Position[] { target };
     }
 }

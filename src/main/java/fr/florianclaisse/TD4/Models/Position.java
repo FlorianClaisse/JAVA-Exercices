@@ -1,4 +1,4 @@
-package fr.florianclaisse.TD4;
+package fr.florianclaisse.TD4.Models;
 
 import java.util.Objects;
 import java.util.Random;

@@ -1,7 +1,7 @@
 package fr.florianclaisse.TD4.Views;
 
 import fr.florianclaisse.TD4.Models.World;
-import fr.florianclaisse.TD4.Position;
+import fr.florianclaisse.TD4.Models.Position;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -9,9 +9,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
 public class View {
-    private int width;
-    private int height;
-    private Pane pane;
+    private final int width;
+    private final int height;
+    private final Pane pane;
     private Scene scene;
 
     public View(int width, int height) {
@@ -34,7 +34,7 @@ public class View {
                 Position position = new Position(x, y);
 
                 if (world.get(position) != World.EMPTY) {
-                    pane.getChildren().add(DecorFactory.create(position, world.get(position)).getImg());
+                    this.pane.getChildren().add(DecorFactory.create(position, world.get(position)).getImg());
                 }
             }
         }

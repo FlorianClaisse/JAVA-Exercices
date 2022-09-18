@@ -1,6 +1,6 @@
 package fr.florianclaisse.TD4.Views;
 
-import fr.florianclaisse.TD4.Position;
+import fr.florianclaisse.TD4.Models.Position;
 import javafx.scene.image.ImageView;
 
 public class SpriteDust extends SpriteDecor {

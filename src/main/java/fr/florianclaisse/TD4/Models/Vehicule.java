@@ -1,7 +1,5 @@
 package fr.florianclaisse.TD4.Models;
 
-import fr.florianclaisse.TD4.Position;
-
 public abstract class Vehicule {
 
     private Position position;
@@ -32,6 +30,7 @@ public abstract class Vehicule {
     public final void move(Position target) {
         this.energy -= this.distance(target) * this.cost;
         this.position = target;
+        this.move = false;
         System.out.println("Move completed: " + this);
     }
 

@@ -1,16 +1,13 @@
 package fr.florianclaisse.TD4.Views;
 
 
-import fr.florianclaisse.TD4.Position;
+import fr.florianclaisse.TD4.Models.Position;
 import javafx.scene.image.ImageView;
 
 public class SpriteDecor extends Sprite {
 
-    private Position position;
-
     public SpriteDecor(Position position, ImageView img) {
         super(img);
-        this.position = position;
 
         this.updateLocation(position);
     }

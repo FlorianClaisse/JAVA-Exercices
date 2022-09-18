@@ -1,7 +1,5 @@
 package fr.florianclaisse.TD4.Models;
 
-import fr.florianclaisse.TD4.Position;
-
 public class World {
 
     public static final int EMPTY = 0;

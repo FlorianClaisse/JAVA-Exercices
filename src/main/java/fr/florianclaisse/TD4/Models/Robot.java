@@ -1,6 +1,7 @@
 package fr.florianclaisse.TD4.Models;
 
-import fr.florianclaisse.TD4.Position;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Robot extends Vehicule {
 
@@ -19,11 +20,24 @@ public class Robot extends Vehicule {
 
     @Override
     public Position[] getPathTo(Position target) {
-        // TODO: Trouver un code pour faire l'escalier
-        Position[] array = new Position[2];
-        array[0] = new Position(target.getX(), this.getPosition().getY());
-        array[1] = new Position(target.getX(), target.getY());
+        this.setMove(true);
 
-        return array;
+        List<Position> posTab = new ArrayList<>();
+        int x1 = this.getPosition().getX(), x2 = target.getX();
+        int y1 = this.getPosition().getY(), y2 = target.getY();
+        int distX = x2 - x1;
+        int distY = y2 - y1;
+        while (distX != 0 && distY != 0) {
+            distX = x2 - x1;
+            distY = y2 - y1;
+            if (Math.abs(distX) > Math.abs(distY)) {
+                if (distX > 0) { posTab.add(new Position(++x1, y1)); }
+                else { posTab.add(new Position(--x1, y1)); }
+            } else {
+                if (distY > 0) { posTab.add(new Position(x1, ++y1)); }
+                else { posTab.add(new Position(x1, --y1)); }
+            }
+        }
+        return posTab.toArray(Position[]::new);
     }
 }
