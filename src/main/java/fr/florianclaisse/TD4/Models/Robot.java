@@ -40,4 +40,9 @@ public class Robot extends Vehicule {
         }
         return posTab.toArray(Position[]::new);
     }
+
+    @Override
+    public String toString() {
+        return "Drone" + super.toString();
+    }
 }

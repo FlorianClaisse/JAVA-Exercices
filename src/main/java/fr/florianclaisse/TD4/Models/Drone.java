@@ -22,4 +22,9 @@ public class Drone extends Vehicule {
         this.setMove(true);
         return new Position[] { target };
     }
+
+    @Override
+    public String toString() {
+        return "Drone" +  super.toString();
+    }
 }
