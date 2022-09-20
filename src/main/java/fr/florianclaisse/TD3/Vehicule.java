@@ -39,10 +39,6 @@ public class Vehicule {
 
     @Override
     public String toString() {
-        String name;
-        if (this instanceof Robot) { name = "Robot"; }
-        else { name = "Drone"; }
-
-        return name + "(energy=" + this.energy + ")";
+        return "(energy=" + this.energy + ")";
     }
 }

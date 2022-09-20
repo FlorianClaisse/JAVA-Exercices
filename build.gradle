@@ -21,7 +21,7 @@ javafx {
     modules = [ 'javafx.controls' ]
 }
 
-mainClassName = "fr.florianclaisse.TD4.Main"
+mainClassName = "fr.florianclaisse.TD5.Main"
 
 test {
     useJUnitPlatform()
