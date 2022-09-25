@@ -78,7 +78,7 @@ public class EditorView extends BorderPane {
 
         // Export as compressed String
         exportItemSZ.setOnAction(e -> {
-//            exportDialog(gridRepoStringRLE.export(grid));
+            exportDialog(gridRepoStringRLE.export(grid));
         });
 
         // Exit
