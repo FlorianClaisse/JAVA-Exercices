@@ -18,7 +18,7 @@ public enum Entity {
             if (entity.getCode() == c)
                 return entity;
         }
-
+        System.out.println(c);
         throw new GridException("invalid entity code");
     }
 }
