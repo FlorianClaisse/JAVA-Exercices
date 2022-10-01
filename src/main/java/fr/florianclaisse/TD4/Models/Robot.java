@@ -43,6 +43,6 @@ public class Robot extends Vehicule {
 
     @Override
     public String toString() {
-        return "Drone" + super.toString();
+        return "Robot" + super.toString();
     }
 }
