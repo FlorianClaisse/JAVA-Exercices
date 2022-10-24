@@ -3,6 +3,7 @@ package fr.florianclaisse.TD6.Models;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Set;
+import java.util.stream.Stream;
 
 public class Graph<T> {
     private final Set<Node<T>> nodes;
@@ -10,7 +11,7 @@ public class Graph<T> {
     public Graph() {
         this.nodes = new HashSet<>();
     }
-
+    
     public boolean isConnected() {
         if (nodes.size() == 0) {
             return true;

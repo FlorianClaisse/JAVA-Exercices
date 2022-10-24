@@ -12,12 +12,9 @@ public class Node<T> {
         this.neighbours = new ArrayList<>();
     }
 
-    public void addEdge(Node<T> to) {
-        this.neighbours.add(to);
-    }
-
     public T getData() { return this.data; }
+
+    public void addEdge(Node<T> to) { this.neighbours.add(to); }
+
     public List<Node<T>> getNeighbours() { return this.neighbours; }
-
-
 }

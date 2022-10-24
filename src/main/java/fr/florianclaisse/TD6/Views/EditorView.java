@@ -58,6 +58,7 @@ public class EditorView extends BorderPane {
             }
         });
 
+        MenuItem connectivityItem = new MenuItem("Check connectivity");
         MenuItem newItem = new MenuItem("New map");
         MenuItem loadItemJ = new MenuItem("Load from Java declaration");
         MenuItem exportItemJ = new MenuItem("Export as Java declaration");
@@ -76,8 +77,17 @@ public class EditorView extends BorderPane {
                 loadItemF, exportItemF, new SeparatorMenuItem(),
                 loadItemSZ, exportItemSZ, new SeparatorMenuItem(),
                 exitItem);
+        
+        editMenu.getItems().addAll(connectivityItem, marksItem);
         menuBar.getMenus().addAll(fileMenu, editMenu);
         this.setTop(menuBar);
+
+        connectivityItem.setOnAction(e -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Map may be fully connected ???");
+            alert.showAndWait();
+        });
 
         // New empty map
         newItem.setOnAction(e -> {
