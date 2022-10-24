@@ -11,6 +11,10 @@ public enum Entity {
 
     Entity(char c) { this.code = c; }
 
+    public boolean isAccessible() {
+        return (this != ROCK && this != BIGROCK);
+    }
+
     public char getCode() { return this.code; }
 
     public static Entity fromCode(char c) throws GridException {

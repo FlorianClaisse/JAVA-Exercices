@@ -1,9 +1,9 @@
 package fr.florianclaisse.TD6.Models;
 
+import java.awt.*;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
-import java.nio.CharBuffer;
 
 public class GridRepoString implements GridRepo, GridRepoIO {
 
@@ -47,7 +47,7 @@ public class GridRepoString implements GridRepo, GridRepoIO {
 
     @Override
     public Grid load(Reader in) throws IOException {
-        try {
+        try (in) {
             if (!in.ready()) throw new IOException("La lecture du fichier n'est pas possible");
 
             StringBuilder buffer = new StringBuilder();
@@ -56,8 +56,6 @@ public class GridRepoString implements GridRepo, GridRepoIO {
                 buffer.append((char) currentChar);
                 currentChar = in.read();
             }
-
-            in.close();
 
             return this.load(buffer.toString());
         } catch (IOException exception) {
@@ -88,11 +86,54 @@ public class GridRepoString implements GridRepo, GridRepoIO {
     public void export(Grid grid, Writer ou) throws IOException {
         String dest = this.export(grid);
 
-        try {
+        try (ou) {
             ou.write(dest);
-            ou.close();
         } catch (IOException exception) {
             System.out.println(exception.getMessage());
         }
+    }
+
+    public Graph<Point> getGraph(Grid grid){
+        Graph<Point> graph = new Graph<>();
+        for (int y = 0; y < grid.getHeight(); y++) {
+            for (int x = 0; x < grid.getWidth(); x++) {
+                if (grid.get(x, y).isAccessible()) {
+                    graph.addNode(new Point(x, y));
+                }
+            }
+        }
+
+        Point pos = new Point();
+        Point pos2 = new Point();
+
+        for (int y = 0; y < grid.getHeight(); y++) {
+            for (int x = 0; x < grid.getWidth(); x++) {
+                if (!grid.get(x, y).isAccessible()) continue;
+                pos.setLocation(x, y);
+                if (x > 0) {
+                    pos2.setLocation(x - 1, y);
+                    if (grid.get((int) pos2.getX(), (int) pos2.getY()).isAccessible()) {
+                        graph.getNode(pos).addEdge(graph.getNode(pos2));
+                    }
+                } if (y > 0) {
+                    pos2.setLocation(x, y - 1);
+                    if (grid.get((int) pos2.getX(), (int) pos2.getY()).isAccessible()) {
+                        graph.getNode(pos).addEdge(graph.getNode(pos2));
+                    }
+                } if (x < grid.getWidth() - 1) {
+                    pos2.setLocation(x + 1, y);
+                    if (grid.get((int) pos2.getX(), (int) pos2.getY()).isAccessible()) {
+                        graph.getNode(pos).addEdge(graph.getNode(pos2));
+                    }
+                } if (y < grid.getHeight() - 1){
+                    pos2.setLocation(x, y + 1);
+                    if (grid.get((int) pos2.getX(), (int) pos2.getY()).isAccessible()) {
+                        graph.getNode(pos).addEdge(graph.getNode(pos2));
+                    }
+                }
+            }
+        }
+
+        return graph;
     }
 }

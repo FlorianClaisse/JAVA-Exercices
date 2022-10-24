@@ -18,8 +18,8 @@ public class Main extends Application {
         stage.show();
     }
 
+
     public static void main(String[] args) {
-        new GridRepoStringRLE().load("G4DG4xG6DGGxGGRCGGBGGxGRGRG5xG9xG7CGxGDGDG5xG3CGDBGGxGRG7x");
         launch();
     }
 }

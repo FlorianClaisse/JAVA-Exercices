@@ -13,6 +13,10 @@ public class Grid {
         this.grid = new Entity[height][width];
     }
 
+    public boolean isInside(int x, int y) {
+        return x >= 0 && y >= 0 && x < this.width && y < this.height;
+    }
+
     public int getWidth() { return this.width; }
     public int getHeight() { return this.height; }
 

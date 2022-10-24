@@ -26,14 +26,37 @@ public class EditorView extends BorderPane {
         GridRepoString gridRepoString = new GridRepoString();
         GridRepo gridRepoStringRLE = new GridRepoStringRLE();
 
+
         // Tile picker
         this.pickerView = new PickerView();
         this.setRight(pickerView);
+        GridView gridView = new GridView(this.grid, this.pickerView);
 
         // Create menu
         MenuBar menuBar = new MenuBar();
         Menu fileMenu = new Menu("File");
+        Menu editMenu = new Menu("Edit");
         FileChooser fileChooser = new FileChooser();
+
+        MenuItem marksItem = new MenuItem("Clear marks");
+        marksItem.setOnAction(e -> gridView.getMarker().clear());
+
+        MenuItem connectivityItem = new MenuItem("Check connectivity");
+        editMenu.getItems().addAll(connectivityItem, marksItem);
+
+        connectivityItem.setOnAction(e -> {
+            if (gridRepoString.getGraph(this.grid).isConnected()) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setContentText("Map is connected !!!");
+                alert.showAndWait();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setContentText("Map may be fully connected ???");
+                alert.showAndWait();
+            }
+        });
 
         MenuItem newItem = new MenuItem("New map");
         MenuItem loadItemJ = new MenuItem("Load from Java declaration");
@@ -53,7 +76,7 @@ public class EditorView extends BorderPane {
                 loadItemF, exportItemF, new SeparatorMenuItem(),
                 loadItemSZ, exportItemSZ, new SeparatorMenuItem(),
                 exitItem);
-        menuBar.getMenus().addAll(fileMenu);
+        menuBar.getMenus().addAll(fileMenu, editMenu);
         this.setTop(menuBar);
 
         // New empty map

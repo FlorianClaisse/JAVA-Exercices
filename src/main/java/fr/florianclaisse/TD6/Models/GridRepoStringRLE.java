@@ -10,8 +10,12 @@ public class GridRepoStringRLE implements GridRepo {
         // Decompression
         StringBuilder array = new StringBuilder();
         for (int i = 0; i < string.length(); i++) {
-            if (string.charAt(i) >= '0' && string.charAt(i) <= '9') {
-                array.append(String.valueOf(string.charAt(i - 1)).repeat(Math.max(0, Integer.parseInt(String.valueOf(string.charAt(i))) - 1)));
+            char currentChar = string.charAt(i);
+            if (Character.isDigit(currentChar)) {
+                int repeat = Integer.parseInt(String.valueOf(currentChar));
+                for (; i < repeat; i++) {
+                    array.append(currentChar);
+                }
             } else {
                 array.append(string.charAt(i));
             }
@@ -61,9 +65,6 @@ public class GridRepoStringRLE implements GridRepo {
             }
             dest.append(this.EOL);
         }
-
-        System.out.println("G4DG4xG6DGGxGGRCGGBGGxGRGRG5xG9xG7CGxGDGDG5xG3CGDBGGxGRG7x");
-        System.out.println(dest);
 
         return dest.toString();
     }
