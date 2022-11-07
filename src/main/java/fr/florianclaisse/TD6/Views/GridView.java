@@ -1,11 +1,15 @@
 package fr.florianclaisse.TD6.Views;
 
 import fr.florianclaisse.TD4.Models.Position;
+import fr.florianclaisse.TD6.Models.Graph;
 import fr.florianclaisse.TD6.Models.Grid;
+import fr.florianclaisse.TD6.Models.GridRepoString;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.BorderPane;
+
+import java.awt.*;
 
 public class GridView extends BorderPane {
 
@@ -56,6 +60,8 @@ public class GridView extends BorderPane {
                 System.out.println("Path finding " + marker.getPosition() + " -> " + new Position(i,j));
                 // This needs to be updated!
                 // Create the graph and run A* to find the shortest path
+                Graph<Point> graph = new GridRepoString().getGraph(this.grid);
+                graph.aStart();
             });
             contextMenu.getItems().addAll(itemMark, itemPath);
             contextMenu.show(tile, e.getScreenX(), e.getScreenY());

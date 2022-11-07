@@ -22,6 +22,10 @@ public class Graph<T> {
         return visited.size() == nodes.size();
     }
 
+    public Graph<T> aStart() {
+        return null;
+    }
+
     public void addNode(T data) { this.nodes.add(new Node<>(data)); }
 
     public Node<T> getNode(T data) {

@@ -42,7 +42,6 @@ public class EditorView extends BorderPane {
         marksItem.setOnAction(e -> gridView.getMarker().clear());
 
         MenuItem connectivityItem = new MenuItem("Check connectivity");
-        editMenu.getItems().addAll(connectivityItem, marksItem);
 
         connectivityItem.setOnAction(e -> {
             if (gridRepoString.getGraph(this.grid).isConnected()) {
@@ -58,7 +57,6 @@ public class EditorView extends BorderPane {
             }
         });
 
-        MenuItem connectivityItem = new MenuItem("Check connectivity");
         MenuItem newItem = new MenuItem("New map");
         MenuItem loadItemJ = new MenuItem("Load from Java declaration");
         MenuItem exportItemJ = new MenuItem("Export as Java declaration");
